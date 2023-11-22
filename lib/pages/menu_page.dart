@@ -9,6 +9,7 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff2f2f2),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
