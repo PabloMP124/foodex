@@ -118,7 +118,7 @@ class _RegistryPageState extends State<RegistryPage> {
                 children: [
                   Text(
                     'Ingresa los datos diarios',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFf2f2f2)),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFf2f2f2)),
                     textAlign: TextAlign.center,
                   ),
                 ],
