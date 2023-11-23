@@ -12,13 +12,35 @@ class MenuPage extends StatelessWidget {
       backgroundColor: Color(0xfff2f2f2),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text(
-              'Welcome to the Menu Page!',
-              style: TextStyle(fontSize: 20),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: const Color(0xFF9AA7B1)),
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
+                color: const Color(0xFF9AA7B1),
+              ),
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 1 / 5,
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Menu de administrador',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFf2f2f2),
+                      ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 50),
             MyButton(
                 onTap: () {
                   Navigator.push(

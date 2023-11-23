@@ -3,6 +3,7 @@ import 'package:foodex/components/my_button.dart';
 import 'package:foodex/components/my_textfield.dart';
 import 'package:foodex/components/square_tile.dart';
 import 'menu_page.dart';
+import 'registry_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -13,9 +14,27 @@ class LoginPage extends StatelessWidget {
 
   // sign user in method
   void signUserIn(BuildContext context) {
-    Navigator.pushReplacement(context,
+    String username = usernameController.text.toLowerCase();
+
+    if (username == "admin") {
+      Navigator.pushReplacement(
+        context,
         MaterialPageRoute(builder: (context) => const MenuPage()),
-    );
+      );
+    } else if (username == "recorder") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => RegistryPage()),
+      );
+    } else {
+      // Handle other user roles or show an error message
+      // For now, navigate to MenuPage for any other user
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MenuPage()),
+      );
+    }
   }
 
   @override
@@ -96,10 +115,10 @@ class LoginPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   const Text(
-                'Regístrate aquí',
-                style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
+                    'Regístrate aquí',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

@@ -67,7 +67,6 @@ class _RegistryPageState extends State<RegistryPage> {
     'Pollo a la plancha',
     'Pavo al horno',
     'Arroz',
-    'Fideos',
     'Papas rusticas',
     'Fideos',
     'Pepino',
@@ -90,7 +89,7 @@ class _RegistryPageState extends State<RegistryPage> {
     'Vacuno arvejado',
     'Pure',
     'Pasta a la mantequilla'
-    // Platos extra
+    // Extra dishes
   ];
 
   // Variable to store the selected dish from the dropdown
@@ -163,7 +162,7 @@ class _RegistryPageState extends State<RegistryPage> {
       double production = entry.value['production'] ?? 0.0;
       double excess = entry.value['excess'] ?? 0.0;
 
-      return '"$dish": {"Producción": $production, "Exceso": $excess}\n';
+      return '$dish: (Producción: $production, Exceso: $excess)\n';
     }).join('');
   }
 }
