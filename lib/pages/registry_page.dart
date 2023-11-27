@@ -16,51 +16,88 @@ class _RegistryPageState extends State<RegistryPage> {
   TextEditingController excessController = TextEditingController();
 
   // Function to update values in the map
-  void updateValues(String dish, double production, double excess) {
+  void updateValues(String dish, {double? production, double? excess}) {
     setState(() {
-      dishValues[dish] = {'production': production, 'excess': excess};
+      // Get the existing values for the dish
+      Map<String, double> existingValues = dishValues[dish] ?? {'production': 0.0, 'excess': 0.0};
+
+      // Update only the provided values
+      if (production != null) {
+        existingValues['production'] = production;
+      }
+
+      if (excess != null) {
+        existingValues['excess'] = excess;
+      }
+
+      // Update the map with the modified values
+      dishValues[dish] = existingValues;
     });
   }
 
-  // Function to build the form
-  Widget buildForm() {
+
+ Widget buildProductionForm() {
     return Column(
       children: [
-        // Add text fields for production and excess
+        // Add text field for production
         TextField(
           controller: productionController,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(labelText: 'Producción'),
         ),
+        // Add a button to submit the production value
+        const SizedBox(height: 50),
+        MyButton(
+          onTap: () {
+            // Get the selected dish
+            String selectedDish = dishDropdownValue;
+
+            // Get production value from the text field
+            double production = double.parse(productionController.text);
+
+            // Update production value in the map
+            updateValues(selectedDish, production: production);
+
+            // Clear the production text field
+            productionController.clear();
+          },
+          buttonText: "Guardar Producción",
+        ),
+      ],
+    );
+  }
+
+  Widget buildExcessForm() {
+    return Column(
+      children: [
+        // Add text field for excess
         TextField(
           controller: excessController,
           keyboardType: TextInputType.numberWithOptions(signed: true),
           // Allow negative numbers
           decoration: InputDecoration(labelText: 'Residuo o falta'),
         ),
-        // Add a button to submit the form
-        const SizedBox( height: 50),
-        MyButton(onTap: () {
+        // Add a button to submit the excess value
+        const SizedBox(height: 50),
+        MyButton(
+          onTap: () {
             // Get the selected dish
             String selectedDish = dishDropdownValue;
 
-            // Get production and excess values from text fields
-            double production = double.parse(productionController.text);
+            // Get excess value from the text field
             double excess = double.parse(excessController.text);
 
-            // Update values in the map
-            updateValues(selectedDish, production, excess);
+            // Update excess value in the map
+            updateValues(selectedDish, excess: excess);
 
-            // Clear text fields
-            productionController.clear();
+            // Clear the excess text field
             excessController.clear();
           },
-         buttonText: "Guardar"
-         ),
+          buttonText: "Guardar Exceso",
+        ),
       ],
     );
   }
-
   // Dropdown menu items for dishes
   List<String> dishes = [
     'Lentejas guisadas',
@@ -98,6 +135,7 @@ class _RegistryPageState extends State<RegistryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff2f2f2),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -145,7 +183,11 @@ class _RegistryPageState extends State<RegistryPage> {
             // Display the form
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: buildForm(),
+              child: buildProductionForm(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: buildExcessForm(),
             ),
             // Display the stored values
             const SizedBox(height: 50),

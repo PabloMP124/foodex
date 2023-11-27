@@ -29,7 +29,7 @@ class MenuPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Menu de administrador',
+                    'Menú de administrador',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
