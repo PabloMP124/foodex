@@ -161,7 +161,7 @@ class _RegistryPageState extends State<RegistryPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 60),
             // Dropdown menu for selecting a dish
             DropdownButton<String>(
               value: dishDropdownValue,

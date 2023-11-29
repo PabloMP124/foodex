@@ -50,7 +50,8 @@ class MenuPage extends StatelessWidget {
                     ),
                   );
                 },
-                buttonText: "Revisar estadísticas"),
+                buttonText: "Revisar estadísticas",
+            ),
             const SizedBox(height: 50),
             MyButton(
                 onTap: () {
